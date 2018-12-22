@@ -1,9 +1,11 @@
-package com.rajesh.rest.webservices.restfulwebservices;
+package com.rajesh.rest.webservices.restfulwebservices.helloworld;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class HelloWorldController {
 	
@@ -17,8 +19,10 @@ public class HelloWorldController {
 		return new HelloWorldBean("Hello World");
 	}
 	
-	@GetMapping(path="/hello-world-bean/path-varaible/{name}")
+	@GetMapping(path="/hello-world/path-variable/{name}")
 	public HelloWorldBean helloWorldPathVaraible(@PathVariable String name) {
+		//throw new RuntimeException("Some Error has Happened! Contact Support at ***-***");
 		return new HelloWorldBean(String.format("Hello World %s", name));
 	}
+	
 }
