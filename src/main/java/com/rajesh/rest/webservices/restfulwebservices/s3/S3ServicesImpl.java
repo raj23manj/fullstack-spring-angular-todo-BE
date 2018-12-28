@@ -3,7 +3,8 @@ package com.rajesh.rest.webservices.restfulwebservices.s3;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
- 
+import java.net.URL;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,4 +86,9 @@ public class S3ServicesImpl implements S3Services {
             throw ace;
         }
 	}
+	
+	public URL getDownloadUrl() {
+		return s3client.getUrl(bucketName, "demo1");
+	}
+	
 }

@@ -1,6 +1,7 @@
 package com.rajesh.rest.webservices.restfulwebservices.s3;
 
 import java.io.ByteArrayOutputStream;
+import java.net.URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +31,12 @@ public class DownloadFileController {
 					.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + keyname + "\"")
 					.body(downloadInputStream.toByteArray());	
 	}
+	
+	@GetMapping("/api/file/downloadUrl")
+	public URL downloadUrl() {	
+		return s3Services.getDownloadUrl();
+	}
+	
 	
 	private MediaType contentType(String keyname) {
 		String[] arr = keyname.split("\\.");
