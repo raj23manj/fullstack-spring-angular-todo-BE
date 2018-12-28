@@ -1,0 +1,35 @@
+package com.rajesh.rest.webservices.restfulwebservices.websockets;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rajesh.rest.webservices.restfulwebservices.s3.S3Services;
+
+//@Controller
+@RestController
+@CrossOrigin(origins="http://localhost:4200") 
+public class WebSocketController {
+	@Autowired
+	S3Services s3Services;
+	
+	@Autowired
+    SimpMessagingTemplate template;
+	
+//	@MessageMapping("/download-notification-url")
+//	@SendTo("/topic/messages") // pushing the messages to broker, under messages
+//	public WebSocketResponse getUser() {
+//	    return new WebSocketResponse("download-url", (s3Services.getDownloadUrl()).toString());
+//	}
+	
+	@RequestMapping("/download-notification-url")
+//	@SendTo("/topic/messages") // pushing the messages to broker, under messages
+	public void getUser() {
+		template.convertAndSend("/topic/messages", new WebSocketResponse("download-url", (s3Services.getDownloadUrl()).toString()));   
+	}
+}
