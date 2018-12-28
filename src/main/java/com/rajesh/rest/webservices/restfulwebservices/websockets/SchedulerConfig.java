@@ -13,9 +13,9 @@ public class SchedulerConfig {
     @Autowired
     SimpMessagingTemplate template;
 
-    @Scheduled(fixedDelay = 3000)
-    public void sendAdhocMessages() {
-    	// push message for 3 sec's
-        template.convertAndSend("/topic/messages", new WebSocketResponse("demo" ,"Fixed Delay Scheduler"));
-    }
+//    @Scheduled(fixedDelay = 3000)
+//    public void sendAdhocMessages() {
+//    	// push message for 3 sec's
+//        template.convertAndSend("/topic/messages", new WebSocketResponse("demo" ,"Fixed Delay Scheduler"));
+//    }
 }
