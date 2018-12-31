@@ -1,6 +1,7 @@
 package com.rajesh.rest.webservices.restfulwebservices.todo;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,16 @@ public class TodoResource {
 	
 	@Autowired
 	private TodoHardcodedService todoService;
+	private Principal demo;
 
 	//@Autowired
 	//private TodoJpaRepository todoJpaRepository;
 
 	
 	@GetMapping("/jpa/users/{username}/todos")
-	public List<Todo> getAllTodos(@PathVariable String username){
+	public List<Todo> getAllTodos(@PathVariable String username, Principal principal){
+
+		demo = principal;
 		//return todoJpaRepository.findByUsername(username);
 		return todoService.findAll();
 	}
